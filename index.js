@@ -2,6 +2,7 @@ let canvas= document.getElementsByTagName('canvas')[0]
 canvas.width= window.innerWidth
 canvas.height=window.innerHeight
 let c= canvas.getContext('2d')
+let intervalPointer;
 
 document.getElementById('reload').addEventListener('click', ()=>{location.reload()})
 
@@ -10,10 +11,28 @@ let relativeVelocity=0
 window.addEventListener('keydown', batMovement)
 window.addEventListener('keyup',()=>{relativeVelocity=0})
 
+const leftBtn=document.getElementById('left')
+leftBtn.addEventListener('touchstart',()=>{
+  intervalPointer= setInterval(
+  ()=>batMovement({key:'ArrowLeft'}),
+  10)
+});
+document.getElementById('right').addEventListener('touchstart',()=>{
+  intervalPointer= setInterval(
+  ()=>batMovement({key:'ArrowRight'}),
+  10)
+})
+
+window.addEventListener('touchend',()=>{
+  relativeVelocity=0
+  clearTimeout(intervalPointer)
+})
+
+
 // bat coordinates
 let batx=0;
 const baty= canvas.height
-let batMove=10;
+let batMove=3;
 let batWidth= 100;
 const batHeight= 10;
 let batImage = new Image();
