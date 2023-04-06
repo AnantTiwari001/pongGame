@@ -17,21 +17,17 @@ let dx= 5;
 let dy= 5;
 
 window.addEventListener('keydown', (e)=>{
-    console.log(e.keyCode)
-    if(e.keyCode==38){
-        console.log('up key is pressed here');
-        batPosY= batPosY -batD;
-    }
-    else if(e.keyCode== 40){
-        console.log('down key is pressed here');
-        batPosY= batPosY+batD;
+    console.log(e.key)
+    if(e.key==='ArrowUp'){
+        ballPosY+=batD
+    }else if(e.key==='ArrowDown'){
+        ballPosY-=batD
     }
 })
 
 function draw() {
     c.fillStyle= 'rgb(12,12,12)';
     c.fillRect(0, 0, window.innerWidth, window.innerHeight);
-    console.log('hello world');
     c.fillStyle='white';
     c.fillRect(batPosX, batPosY, 10, batWidth);
 
