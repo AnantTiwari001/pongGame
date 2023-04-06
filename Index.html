@@ -1,37 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ping Pong</title>
     <style>
-        html,body{
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            overflow: hidden;
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        overflow: hidden;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .full-screen {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-image: url("background.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+      .controls {
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        bottom: 50px;
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        transform: translateX(-50%);
+      }
+      #gameOver {
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        top: 50%;
+        bottom: 50%;
+        width: 100%;
+        padding: 10px;
+        background-image: url(gameOver.jpg);
+        transform: translateX(-50%) translateY(-50%);
+        height: 320px;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: none;
+      }
+      .bi {
+        font-size: 50px;
+        border: 1px solid gray;
+        border-radius: 50%;
+        padding: 0px 5px;
+        background-color: #664d5e8f;
+      }
+      @media (min-width: 550px) {
+        .controls {
+          display: none;
         }
-        ::-webkit-scrollbar{
-            display: none;
-        }
-        .full-screen{
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            background-image: url("background.jpg");
-            background-size: cover;
-            background-position: center;
-        }
+      }
+      #status{
+        position: absolute;
+        top: 10px;
+        right: 0;
+        display: flex;
+        width: 200px;
+        justify-content: space-around;
+        color: white;
+      }
     </style>
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="full-screen">
-        <canvas></canvas>
+      <div id="status">
+        <h2>Score <span id="score">0</span> </h2>
+        <i id="reload" class="bi bi-arrow-clockwise"></i>
+      </div>
+      <div id="gameOver"></div>
+      <div class="controls">
+        <i class="bi bi-arrow-left"></i>
+        <i class="bi bi-arrow-right"></i>
+      </div>
+      <canvas></canvas>
     </div>
     <script src="index.js"></script>
-</body>
+  </body>
 </html>

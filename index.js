@@ -3,6 +3,8 @@ canvas.width= window.innerWidth
 canvas.height=window.innerHeight
 let c= canvas.getContext('2d')
 
+document.getElementById('reload').addEventListener('click', ()=>{location.reload()})
+
 let relativeVelocity=0
 
 window.addEventListener('keydown', batMovement)
@@ -40,6 +42,8 @@ function ballReflection(x, y){
     }
     if(y>(canvas.height-20) && batWinStatus){
         dy=-dy
+        let score=document.getElementById('score')
+        score.innerHTML=parseInt(score.innerHTML)+1
         // alert('hellow rold')
     }
     // console.log(batWinStatus)
@@ -71,7 +75,10 @@ function frame(){
     batVelocity=
     ballReflection(ballx, bally);
     if (bally>canvas.height) {
-        window.cancelAnimationFrame(frameId)
+        window.cancelAnimationFrame(frameId);
+        document.getElementById('gameOver').style.display='block'
+        canvas.style.display='none';
+        return(0)
         // console.log('done the game baby!')
     }
     if (bally>canvas.height-2-batHeight-10) {
@@ -79,4 +86,4 @@ function frame(){
     }
     frameId= requestAnimationFrame(frame)
 }
-// frame()
+frame()
